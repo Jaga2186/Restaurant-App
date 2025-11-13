@@ -1,0 +1,63 @@
+inventory-order-management/
+│── .idea/
+│── .mvn/
+│── target/
+│── .gitignore
+│── HELP.md
+│── mvnw
+│── mvnw.cmd
+│── pom.xml
+│
+└── src/
+    ├── main/
+    │   ├── java/com/amazon_inventory/Inventory_order_system/
+    │   │   │
+    │   │   ├── InventoryOrderSystemApplication.java   # Main class
+    │   │   │
+    │   │   ├── model/        # Entities (DB tables)
+    │   │   │   ├── User.java
+    │   │   │   ├── Product.java
+    │   │   │   ├── Inventory.java
+    │   │   │   ├── Order.java
+    │   │   │   └── OrderItem.java
+    │   │   │
+    │   │   ├── repository/   # Data Access (JPA)
+    │   │   │   ├── UserRepository.java
+    │   │   │   ├── ProductRepository.java
+    │   │   │   ├── OrderRepository.java
+    │   │   │   └── InventoryRepository.java
+    │   │   │
+    │   │   ├── service/      # Business Logic
+    │   │   │   ├── UserService.java
+    │   │   │   ├── ProductService.java
+    │   │   │   ├── InventoryService.java
+    │   │   │   └── OrderService.java
+    │   │   │
+    │   │   ├── controller/   # REST APIs
+    │   │   │   ├── UserController.java
+    │   │   │   ├── ProductController.java
+    │   │   │   ├── InventoryController.java
+    │   │   │   └── OrderController.java
+    │   │   │
+    │   │   ├── dto/          # Request/Response Payloads
+    │   │   │   ├── UserDto.java
+    │   │   │   ├── ProductDto.java
+    │   │   │   ├── OrderRequest.java
+    │   │   │   └── OrderResponse.java
+    │   │   │
+    │   │   ├── config/       # AWS + Security Config
+    │   │   │   ├── AwsS3Config.java
+    │   │   │   ├── AwsSnsConfig.java
+    │   │   │   └── SecurityConfig.java
+    │   │   │
+    │   │   └── exception/    # Error Handling
+    │   │       ├── GlobalExceptionHandler.java
+    │   │       └── ResourceNotFoundException.java
+    │   │
+    │   └── resources/
+    │       ├── application.properties   # DB, AWS, Security configs
+    │       ├── static/                  # (optional frontend assets)
+    │       └── templates/               # (if Thymeleaf/JSP used)
+    │
+    └── test/java/com/amazon_inventory/Inventory_order_system/
+        └── InventoryOrderSystemApplicationTests.java   # Unit/Integration tests
