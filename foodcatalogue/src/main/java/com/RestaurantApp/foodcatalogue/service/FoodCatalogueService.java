@@ -6,6 +6,8 @@ import com.RestaurantApp.foodcatalogue.dto.Restaurant;
 import com.RestaurantApp.foodcatalogue.entity.FoodItem;
 import com.RestaurantApp.foodcatalogue.mapper.FoodItemMapper;
 import com.RestaurantApp.foodcatalogue.repo.FoodItemRepo;
+
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -23,6 +25,7 @@ public class FoodCatalogueService {
 //    this method is to save an entity into the dataBase (note that we are saving the entity not the dto,
 //    we have saved an entity and returning the dto)
     public FoodItemDTO addFoodItem(FoodItemDTO foodItemDTO) {
+        @NotNull(message = "Food item details cannot be null")
         FoodItem savedFoodItem = foodItemRepo.save(FoodItemMapper.INSTANCE.mapFoodItemDTOToFoodItem(foodItemDTO));
         return FoodItemMapper.INSTANCE.mapFoodItemToFoodItemDTO(savedFoodItem);
     }
