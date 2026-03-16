@@ -2,8 +2,7 @@ package com.RestaurantApp.restaurantListing.controller;
 
 import com.RestaurantApp.restaurantListing.dto.RestaurantDTO;
 import com.RestaurantApp.restaurantListing.service.RestaurantService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,23 +12,36 @@ import java.util.List;
 @RestController
 @RequestMapping("/restaurant")
 public class RestaurantController {
-    @Autowired
-    private RestaurantService restaurantService;
+    private final RestaurantService restaurantService;
+
+    public RestaurantController(RestaurantService restaurantService) {
+        this.restaurantService = restaurantService;
+    }
 
     @GetMapping("/findAllRestaurants")
     public ResponseEntity<List<RestaurantDTO>> findAllRestaurants() {
-        List<RestaurantDTO> allRestaurants = restaurantService.findAll();
-        return new ResponseEntity<>(allRestaurants, HttpStatus.OK);
+        return restaurantService.getAllRestaurants();
     }
 
     @PostMapping("/addRestaurant")
     public ResponseEntity<RestaurantDTO> saveRestaurant(@RequestBody RestaurantDTO restaurantDTO) {
-        RestaurantDTO restaurantAdded = restaurantService.addRestaurant(restaurantDTO);
-        return new ResponseEntity<>(restaurantAdded, HttpStatus.CREATED);
+        return restaurantService.createRestaurant(restaurantDTO);
     }
 
     @GetMapping("/fetchById/{id}")
     public ResponseEntity<RestaurantDTO> fetchRestaurantById(@PathVariable Integer id) {
-        return restaurantService.fetchRestaurantById(id);
+        return restaurantService.getRestaurantById(id);
+    }
+
+    @PutMapping("/updateRestaurant/{id}")
+    public ResponseEntity<RestaurantDTO> updaRestaurant (
+            @PathVariable Integer id, 
+            @RequestBody RestaurantDTO restaurantDTO) {
+        return restaurantService.updateRestaurant(id, restaurantDTO);
+    }
+
+    @DeleteMapping("/deleteRestaurant/{id}")
+    public ResponseEntity<?> deleteRestaurant(@PathVariable Integer id) {
+        return restaurantService.deleteRestaurant(id);
     }
 }
